@@ -105,7 +105,19 @@ function App() {
     setformData(forUpdateObject);
   }
 
-  const [viewAll, setAll] = useState(false);
+  const [aletter, setAletter] = useState([]);
+  const [bletter, setBletter] = useState([]);
+  const [cletter, setCletter] = useState([]);
+  information.map((val) => {
+    if (val.userName.startsWith("a")) {
+      setAletter(val.userName);
+    }else if(val.userName.startsWith("b")){
+      setBletter(val.userName)
+    }else if(val.userName.startsWith("c")){
+      setCletter(val.userName)
+    }
+
+  });
 
   return (
     <>
@@ -163,11 +175,11 @@ function App() {
               className="input"
               placeholder="Any Query -"
             />
+            <br></br>
+            <button className="btn btn-success active:bg-red-500 active:text-white">
+              {formData.index === "" ? "Save" : "update"}
+            </button>
           </fieldset>
-          <br></br>
-          <button className="btn btn-success">
-            {formData.index === "" ? "Save" : "update"}
-          </button>
         </form>
       </div>
 
@@ -300,7 +312,6 @@ function App() {
                 <div className="drawer-content">
                   {/* Page content here */}
                   <label
-                    onClick={() => setAll(!viewAll)}
                     htmlFor="my-drawer"
                     className="btn btn-primary bg-green-700 drawer-button"
                   >
@@ -314,13 +325,21 @@ function App() {
                     className="drawer-overlay"
                   ></label>
                   <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                    {/* Sidebar content here */}
-                    <li>
-                      <a>Sidebar Item 1</a>
-                    </li>
-                    <li>
-                      <a>Sidebar Item 2</a>
-                    </li>
+                    <div className="navbar bg-primary text-primary-content">
+                      <h1 className="text-2xl">Student Name</h1>
+                    </div>
+                    {information.length > 0 ? (
+                      information.map((val, index) => {
+                        return (
+                          <li key={index} className="text-left">
+                            {val.userName}
+                          </li>
+                        )
+                      })
+                    ) : (
+                      <li>No Data is found</li>
+                    )
+                    }
                   </ul>
                 </div>
               </div>
