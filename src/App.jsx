@@ -51,10 +51,10 @@ function App() {
 
   function saveInfo(event) {
     event.preventDefault();
-    console.log(information); ///test
+    //console.log(information); ///test
 
     if (formData.userRoll >= 23 || formData.userRoll <= 0) {
-      toast.error("Don't Be Over Smart you Cant enter Roll Greater Than 22.");
+      toast.error("Don't Be Over Smart you Cant enter Roll Greater Than 22 or Less Than 1 ");
     } else {
       if (formData.index === "") {
         let checkExist = information.filter(
@@ -105,19 +105,7 @@ function App() {
     setformData(forUpdateObject);
   }
 
-  const [aletter, setAletter] = useState([]);
-  const [bletter, setBletter] = useState([]);
-  const [cletter, setCletter] = useState([]);
-  information.map((val) => {
-    if (val.userName.startsWith("a")) {
-      setAletter(val.userName);
-    }else if(val.userName.startsWith("b")){
-      setBletter(val.userName)
-    }else if(val.userName.startsWith("c")){
-      setCletter(val.userName)
-    }
-
-  });
+ 
 
   return (
     <>
